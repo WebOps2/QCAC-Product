@@ -1,12 +1,12 @@
-import React from 'react';
-import Hero from './components/Hero.jsx';
-import Features from './components/Features.jsx';
+import ProductOverview from "./components/ProductOverview";
 
-export default function App() {
+function App() {
   return (
     <div>
-      <Hero />
-      <Features />
+      <ProductOverview />
+      {/* <Features /> */}
     </div>
   );
 }
+
+export default App;
