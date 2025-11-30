@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import { useState } from "react";
 
 const ReviewForm = () => {
+  const [name, setName] = useState("");
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState("");
@@ -11,11 +12,43 @@ const ReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ rating, comment });
+
+    if (!rating) {
+      alert("Please select a rating 🙂");
+      return;
+    }
+
+    const newReview = {
+      name: name.trim() || "Anonymous",
+      time: "Just now",
+      rating,
+      text: comment.trim() || "No comment provided.",
+    };
+
+    // read existing stored reviews
+    let stored = [];
+    try {
+      const raw = localStorage.getItem("hydrateiq-reviews");
+      if (raw) stored = JSON.parse(raw) || [];
+    } catch (err) {
+      console.error("Failed to read reviews from localStorage", err);
+    }
+
+    // put newest at the top
+    const updated = [newReview, ...stored];
+    localStorage.setItem("hydrateiq-reviews", JSON.stringify(updated));
+
+    // tell ReviewSection to refresh
+    window.dispatchEvent(new Event("hydrateiq-review-added"));
+
     setSubmitted(true);
     setRating(0);
     setHover(0);
     setComment("");
+    setName("");
+
+    // hide success after a bit (optional)
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   const currentValue = hover || rating;
@@ -32,7 +65,25 @@ const ReviewForm = () => {
       </p>
 
       <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
-        
+        {/* 🧑 Name */}
+        <div>
+          <label className="text-lg font-medium text-slate-800">
+            Name <span className="text-slate-500 text-sm">(optional)</span>
+          </label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="How should we address you?"
+            className="
+              w-full mt-2 rounded-2xl border border-slate-200 bg-slate-50 
+              px-4 py-3 text-slate-800 text-base
+              focus:border-teal-400 focus:ring-2 focus:ring-teal-200 focus:bg-white
+              outline-none
+            "
+          />
+        </div>
+
         {/* ⭐ Rating */}
         <div>
           <label className="text-lg font-medium text-slate-800">
