@@ -27,7 +27,6 @@ const Features = () => {
   return (
     <section className="w-full px-4 md:px-10 lg:px-20 mt-16 mb-24">
       <div className="w-full rounded-3xl bg-slate-50 px-6 py-12 md:px-12 md:py-16">
-        {/* Top label + heading */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center rounded-full bg-white px-4 py-1 text-xs font-medium text-slate-500 shadow-sm mb-4">
             Features
@@ -43,14 +42,12 @@ const Features = () => {
           </p>
         </div>
 
-        {/* Feature cards */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {features.map((f, i) => (
             <article
               key={i}
               className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-200 p-5 md:p-6 flex flex-col"
             >
-              {/* Fake “screenshot” area like the example */}
               <img
                 src={f.img}
                 alt={f.title}

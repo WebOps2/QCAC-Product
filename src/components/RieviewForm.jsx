@@ -14,7 +14,7 @@ const ReviewForm = () => {
     e.preventDefault();
 
     if (!rating) {
-      alert("Please select a rating 🙂");
+      alert("Please select a rating");
       return;
     }
 
@@ -25,7 +25,6 @@ const ReviewForm = () => {
       text: comment.trim() || "No comment provided.",
     };
 
-    // read existing stored reviews
     let stored = [];
     try {
       const raw = localStorage.getItem("hydrateiq-reviews");
@@ -34,11 +33,9 @@ const ReviewForm = () => {
       console.error("Failed to read reviews from localStorage", err);
     }
 
-    // put newest at the top
     const updated = [newReview, ...stored];
     localStorage.setItem("hydrateiq-reviews", JSON.stringify(updated));
 
-    // tell ReviewSection to refresh
     window.dispatchEvent(new Event("hydrateiq-review-added"));
 
     setSubmitted(true);
@@ -47,7 +44,6 @@ const ReviewForm = () => {
     setComment("");
     setName("");
 
-    // hide success after a bit (optional)
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -65,7 +61,6 @@ const ReviewForm = () => {
       </p>
 
       <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
-        {/* 🧑 Name */}
         <div>
           <label className="text-lg font-medium text-slate-800">
             Name <span className="text-slate-500 text-sm">(optional)</span>
@@ -84,7 +79,6 @@ const ReviewForm = () => {
           />
         </div>
 
-        {/* ⭐ Rating */}
         <div>
           <label className="text-lg font-medium text-slate-800">
             How would you rate your experience?
@@ -116,7 +110,6 @@ const ReviewForm = () => {
           </div>
         </div>
 
-        {/* 💬 Comment */}
         <div>
           <label className="text-lg font-medium text-slate-800">
             Comment <span className="text-slate-500 text-sm">(optional)</span>
@@ -136,7 +129,6 @@ const ReviewForm = () => {
           />
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="

@@ -1,7 +1,6 @@
 import { ChevronDown, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// base sample reviews (the ones you already had)
 const baseReviews = [
   {
     name: "Sameer Bandha",
@@ -45,7 +44,6 @@ const ReviewSection = () => {
   const [expanded, setExpanded] = useState(false);
   const [allReviews, setAllReviews] = useState(baseReviews);
 
-  // helper to reload from localStorage
   const loadReviews = () => {
     try {
       const raw = localStorage.getItem("hydrateiq-reviews");
@@ -54,7 +52,7 @@ const ReviewSection = () => {
         return;
       }
       const stored = JSON.parse(raw) || [];
-      setAllReviews([...stored, ...baseReviews]); // new ones first
+      setAllReviews([...stored, ...baseReviews]); 
     } catch (err) {
       console.error("Failed to parse reviews from localStorage", err);
       setAllReviews(baseReviews);
