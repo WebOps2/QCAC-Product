@@ -1,12 +1,13 @@
 // src/components/Features.jsx
 import analyticsImg from "../images/analytics.jpg";
 import lifestyleImg from "../images/lifestyle.jpg";
+import reminder from "../images/reminder.jpg";
 const features = [
   {
     label: "Smart LED Coach",
     title: "Personalized hydration reminders",
     desc: "HydrateIQ learns your routine and gently glows when it's time to drink, so you never fall behind on your daily goal.",
-    img: analyticsImg,
+    img: reminder,
   },
   {
     label: "Intake Analytics",
