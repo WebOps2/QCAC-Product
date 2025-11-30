@@ -64,7 +64,7 @@ const ReviewSection = () => {
           <Star
             key={i}
             className={`h-4 w-4 ${
-              i < full ? "fill-purple-500 text-purple-500" : "text-slate-200"
+              i < full ? "fill-teal-400 text-teal-400" : "text-slate-200"
             }`}
           />
         ))}
@@ -99,7 +99,7 @@ const ReviewSection = () => {
                 >
                   <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400"
+                      className="h-full rounded-full + bg-gradient-to-r from-teal-400 to-teal-300"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -158,7 +158,7 @@ const ReviewSection = () => {
 
         <button
         onClick={() => setExpanded(!expanded)}
-        className="text-purple-600 font-medium flex items-center gap-1 hover:underline"
+        className="text-teal-500 hover:text-teal-600 font-medium flex items-center gap-1 hover:underline"
       >
         {expanded ? "Hide reviews" : "Read all reviews"}
         <ChevronDown
