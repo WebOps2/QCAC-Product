@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import waterBottle from "../images/waterbottle.jpg";
+import StyledSelect from "./ui/StyledSelect";
+
+
 
 const colors = ["Blue"];
 const quantities = [1, 2, 3, 4, 5];
@@ -10,21 +13,22 @@ const ProductOverview = () => {
   const [color, setColor] = useState("Green");
   const [quantity, setQuantity] = useState(2);
 
-  return (
-    <div className="w-full p-10">
-      <section className="w-full flex flex-col md:flex-col lg:flex-row rounded-3xl bg-white shadow-xl border border-slate-200 p-10 gap-12">
-        {/* Image */}
-        <div className="md:w-1/2">
-          <img
-            src={waterBottle}
-            alt="HydrateIQ smart water bottle"
-            className="w-full h-auto rounded-2xl object-cover shadow-md"
-          />
-        </div>
 
-        {/* Product Info */}
-        <div className="md:w-1/2 flex flex-col">
-          {/* Title */}
+    return (
+      <div className="w-full p-10">
+        <section className="w-full flex flex-col md:flex-row lg:flex-row rounded-3xl bg-white shadow-xl border border-slate-200 p-10 gap-12">
+          {/* Image */}
+          <div className="md:w-1/2">
+            <img
+              src={waterBottle}
+              alt="HydrateIQ smart water bottle"
+              className="w-full h-auto rounded-2xl object-cover shadow-md"
+            />
+          </div>
+
+          {/* Product Info */}
+          <div className="md:w-1/2 flex flex-col">
+            {/* Title */}
           <div className="space-y-2">
             <h1 className="font-semibold text-slate-900 text-4xl leading-tight">
               HydrateIQ smart <br /> water bottle
@@ -69,27 +73,12 @@ const ProductOverview = () => {
               Color
             </p>
 
-            <div className="relative w-56">
-              <select
+            <div className="w-56">
+              <StyledSelect
                 value={color}
-                onChange={(e) => setColor(e.target.value)}
-                className="
-                  w-full bg-slate-100 rounded-xl px-4 py-3 shadow-sm
-                  text-sm text-slate-700 cursor-pointer
-                  appearance-none outline-none border border-transparent
-                  focus:border-teal-400 focus:ring-2 focus:ring-teal-100
-                  pr-8
-                "
-              >
-                {colors.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
-                ▼
-              </span>
+                onValueChange={setColor}
+                items={colors}
+              />
             </div>
           </div>
 
@@ -97,26 +86,11 @@ const ProductOverview = () => {
           <div className="mt-8 flex items-center gap-4">
             {/* Quantity dropdown */}
             <div className="relative w-24">
-              <select
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className="
-                  w-full bg-slate-100 rounded-xl px-4 py-3 shadow-sm
-                  text-sm text-slate-700 cursor-pointer
-                  appearance-none outline-none border border-transparent
-                  focus:border-teal-400 focus:ring-2 focus:ring-teal-100
-                  pr-8
-                "
-              >
-                {quantities.map((q) => (
-                  <option key={q} value={q}>
-                    {q.toString().padStart(2, "0")}
-                  </option>
-                ))}
-              </select>
-              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
-                ▼
-              </span>
+              <StyledSelect
+                value={quantity.toString().padStart(2, "0")}
+                onValueChange={(v) => setQuantity(Number(v))}
+                items={quantities.map((q) => q.toString().padStart(2, "0"))}
+              />
             </div>
 
             <button className="w-full sm:flex-1 bg-teal-400 hover:bg-teal-500 text-white font-semibold py-3 rounded-xl shadow-sm transition whitespace-nowrap">
