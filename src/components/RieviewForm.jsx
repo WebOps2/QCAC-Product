@@ -9,14 +9,17 @@ const ReviewForm = () => {
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(""); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!rating) {
-      alert("Please select a rating");
+      setError("Please select a rating before submitting.");
       return;
     }
+
+    setError("");
 
     const newReview = {
       name: name.trim() || "Anonymous",
@@ -93,7 +96,10 @@ const ReviewForm = () => {
                 <button
                   key={value}
                   type="button"
-                  onClick={() => setRating(value)}
+                  onClick={() => {
+                    setRating(value);
+                    setError(""); 
+                  }}
                   onMouseEnter={() => setHover(value)}
                   onMouseLeave={() => setHover(0)}
                 >
@@ -140,6 +146,11 @@ const ReviewForm = () => {
           Submit review
         </button>
 
+        {error && (
+          <p className="text-red-500 text-sm font-medium">{error}</p>
+        )}
+
+        {/* SUCCESS MESSAGE */}
         {submitted && (
           <p className="text-emerald-600 text-sm">Thanks for your feedback! 💧</p>
         )}
