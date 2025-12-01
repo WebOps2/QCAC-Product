@@ -3,7 +3,7 @@
 import { useState } from "react";
 import waterBottle from "../images/waterbottle.jpg";
 
-const colors = ["Green"];
+const colors = ["Blue"];
 const quantities = [1, 2, 3, 4, 5];
 
 const ProductOverview = () => {
@@ -12,7 +12,7 @@ const ProductOverview = () => {
 
   return (
     <div className="w-full p-10">
-      <section className="w-full flex flex-col md:flex-row rounded-3xl bg-white shadow-xl border border-slate-200 p-10 gap-12">
+      <section className="w-full flex flex-col md:flex-col lg:flex-row rounded-3xl bg-white shadow-xl border border-slate-200 p-10 gap-12">
         {/* Image */}
         <div className="md:w-1/2">
           <img
@@ -119,7 +119,7 @@ const ProductOverview = () => {
               </span>
             </div>
 
-            <button className="flex-1 bg-teal-400 hover:bg-teal-500 text-white font-semibold py-3 rounded-xl shadow-sm transition">
+            <button className="w-full sm:flex-1 bg-teal-400 hover:bg-teal-500 text-white font-semibold py-3 rounded-xl shadow-sm transition whitespace-nowrap">
               ADD TO CART
             </button>
           </div>
